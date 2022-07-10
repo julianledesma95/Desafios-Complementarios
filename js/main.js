@@ -1,42 +1,35 @@
-let numeroEjercicio = 0;
+/* DESAFÍO COMPLEMENTARIO : Desafío: Incorporar Arrays */
 
-do {
-    numeroEjercicio = prompt("Ingrese 1 si quiere calcular la potencia de un número o ingrese 2 si quiere imprimir su nombre la cantidad de veces deseada")
+let productos = [{id:"1",producto:"Vino Tinto Malbec Cafayate"}, {id:"2",producto:"Vino Tinto Malbec Luigi Bosca"}, {id:"3",producto:"Vino Tinto Malbec Trumpeter"}, 
+{id:"4",producto:"Vino Tinto Malbec Rutini"}, {id:"5",producto:"Vino Tinto Malbec Saint Felicien"}, {id:"6",producto:"Vino Tinto Cabernet Suavignon Cafayate"}, 
+{id:"7",producto:"Vino Tinto Cabernet Suavignon Luigi Bosca"}, {id:"8",producto:"Vino Tinto Cabernet Suavignon Trumpeter"}, {id:"9",producto:"Vino Tinto Cabernet Suavignon Rutini"}, 
+{id:"10",producto:"Vino Tinto Cabernet Suavignon Saint Felicien"}, {id:"11",producto:"Gin Bombay Sapphire"}, {id:"12",producto:"Gin Beefeater"}, {id:"13",producto:"Gin Gordons"}, 
+{id:"14",producto:"Gin Heraclito"}, {id:"15",producto:"Licor Baileys"}, {id:"16",producto:"Vodka Absolut"}, {id:"17",producto:"Vodka Smirnoff"}, {id:"18",producto:"Vodka Sky"}, 
+{id:"19",producto:"Fernet"}, {id:"20",producto:"Campari"}, {id:"21",producto:"Cynar"}, {id:"22",producto:"Gancia"}, {id:"23",producto:"Cinzano"}, {id:"24",producto:"Cerveza Schneider"}, 
+{id:"25",producto:"Cerveza Corona"}, {id:"26",producto:"Cerveza Miller"}, {id:"27",producto:"Cerveza Patagonia"}]
 
-    if (numeroEjercicio == 1) {
-
-        /** Solicito al usuario que ingrese el número y el exponente */
-
-        let base = prompt("Ingrese un número base")
-        let exponente = prompt("Ingrese el número exponente")
-
-        /** Defino resultado igual a 1, para que en la primer interacción la base no cambie. */
-        /** Tambien podría asignar valor 1 a i, para reducir la cantidad de interacciones */
-
-        let resultado = 1;
-
-        for(let i = 0 ; i < exponente; i++){
-            resultado = resultado * base;
-        }
-
-        console.log(resultado)
-
-    } else if (numeroEjercicio == 2) {
-
-        /** Solicito al usuario que ingrese su nombre y la cantidad de veces que desea imprimirlo por consola */
-
-        let nombre = prompt("Ingrese su nombre")
-        let cantidad = prompt("Ingrese la cantidad de veces que desea imprimir su nombre")
-        let i = 0
-        
-        /** creo la variable i y le asigno valor cero */
-        /** creo un while con la misma cantidad de interacciones que el usuario definió como "veces para imprimir el nombre" */
-
-        while (i < cantidad) {
-            console.log(nombre)
-            i++
-        }
-        
+class Productos{
+    constructor (id, producto){
+        this.id = id;
+        this.producto = producto
     }
-    
-} while ((numeroEjercicio != 1) && (numeroEjercicio != 2))
+}
+
+let listaProductos =  []
+
+const agregarProd = () => {
+
+    let id = prompt("Ingrese el ID del producto que desea agregar al carrito:");
+    function filtro(elemento){
+        return elemento.id == id;
+    }
+    let elemento = productos.find(filtro);
+    if (elemento != undefined){
+        let prod = new Productos(elemento.id, elemento.producto);
+        listaProductos.push(prod);
+    } else {
+        alert("Error en el código ingresado, actualice e intente nuevamente.")
+    }
+
+    listaProductos.forEach(element => console.log(element));
+}
